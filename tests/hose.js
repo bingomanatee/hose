@@ -5,7 +5,6 @@ var hose = require('../lib/hose');
 var path = require('path');
 
 var ROOT = path.dirname(__dirname);
-console.log('root: ', ROOT);
 
 tap.test('hose', function (hoseTest) {
 
@@ -27,17 +26,30 @@ tap.test('hose', function (hoseTest) {
         const pars = [];
 
         // test a passthrough that simply echoes paragraphs into pars.
-        hose.eachPar('test/the-saga-of-foo-and-bar.txt', par => 
+        hose.eachPar('test/the-saga-of-foo-and-bar.txt', par =>
             pars.push(par), () => {
-            console.log(pars);
-            testEachPar.same(pars,  [ 'Foo liked grapes.',
+            testEachPar.same(pars, ['Foo liked grapes.',
                 "Bar did not like grapes.\nWhich is why Foo did not like Bar.",
-                'Foo ate bar.' ]);
+                'Foo ate bar.']);
             testEachPar.end();
         });
+    }); 
+
+    hoseTest.test('eachSentence', testEachSen => {
+        const sens = [];
+
+        // test a passthrough that simply echoes paragraphs into pars.
+        hose.eachSentence('test/the-saga-of-foo-and-bar.txt', sen => {
+                sens.push(sen);
+            },
+            () => {
+                testEachSen.same(sens, ['Foo liked grapes.',
+                    'Bar did not like grapes.',
+                    'Which is why Foo did not like Bar.',
+                    'Foo ate bar.']);
+                testEachSen.end();
+            });
     });
-
-
 
     hoseTest.end();
 });
