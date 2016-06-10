@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TextHose</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1>TextHose</h1>
+<p>Welcome to TextHose. Choose a story and a parsing method:</p>
+<ul>
+    <% for (var story of stories ) { %>
+    <li>
+        <b><%= story %></b>
+        <a href="/textHose/par/<%= forUrl(story)%>">Paragraphs</a>
+    </li>
+    <% } %>
+</ul>
+</body>
+</html>

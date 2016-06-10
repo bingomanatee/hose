@@ -1,0 +1,6 @@
+Foo liked grapes.
+
+Bar did not like grapes.
+Which is why Foo did not like Bar.
+
+Foo ate bar.
